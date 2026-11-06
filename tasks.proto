@@ -1,0 +1,26 @@
+syntax = "proto3";
+package task;
+
+import "google/protobuf/empty.proto";
+
+service TaskService{
+    rpc FindAll(google.protobuf.Empty) returns (TaskList) {}
+    rpc FindOne(TaskRequest) returns (Task) {}
+    rpc Create(Task) returns (Task) {}
+    rpc Update(Task) returns (Task) {}
+    rpc Delete(TaskRequest) returns (google.protobuf.Empty) {}
+
+};
+
+message TaskRequest{
+    int32 id = 1;
+}
+
+message Task{
+    int32 id = 1;
+    string title = 2;
+}
+
+message TaskList{
+    repeated Task tasks = 1;
+}
